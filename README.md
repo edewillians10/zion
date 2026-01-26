@@ -36,6 +36,10 @@ Demonstration of reconnaissance on corporate infrastructure. This case study sho
 This case study demonstrates ZION’s efficiency in detecting active phishing campaigns. By analyzing this malicious domain, the dashboard immediately triggers a **MALICIOUS** verdict, correlating high abuse scores and negative reputation from multiple security engines.
 ![Malicious Phishing Analysis](https://github.com/mym0us3r/zion/raw/main/screenshots/zion_conv.png)
 
+### Asset Analysis: Malicious Node 45[.]78[.]194[.]230
+This case study showcases the dashboard's ability to identify a high-risk network node. The system correlates multiple threat indicators—including VirusTotal detections for Malware—to trigger a **MALICIOUS** status, providing the analyst with immediate visual confirmation of the threat level.
+![Malicious Malware Analysis](https://github.com/mym0us3r/zion/blob/main/screenshots/zion_45_78_194_230.png) 
+
 ---
 
 ## 1. Key Features
