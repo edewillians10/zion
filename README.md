@@ -38,35 +38,35 @@ This case study demonstrates ZION’s efficiency in detecting active phishing ca
 
 ### Asset Analysis: Malicious Node 45[.]78[.]194[.]230
 This case study showcases the dashboard's ability to identify a high-risk network node. The system correlates multiple threat indicators—including VirusTotal detections for Malware—to trigger a **MALICIOUS** status, providing the analyst with immediate visual confirmation of the threat level.
-![Malicious Malware Analysis](https://github.com/mym0us3r/zion/blob/main/screenshots/zion_45_78_194_230.png) 
+![Malicious Malware Analysis](https://github.com/mym0us3r/zion/blob/main/screenshots/zion_45_78_194_230.png)
 
 ---
 
 ## 1. Key Features
 
-- **Recursive Triple-Check**  
+- **Recursive Triple-Check**
   Simultaneous analysis of:
-  - Apex Domain  
-  - Canonical Subdomain  
-  - Infrastructure IP  
+  - Apex Domain
+  - Canonical Subdomain
+  - Infrastructure IP
 
-- **Unified Intelligence**  
+- **Unified Intelligence**
   Native integration with:
-  - AbuseIPDB  
-  - VirusTotal  
-  - OTX AlienVault  
+  - AbuseIPDB
+  - VirusTotal
+  - OTX AlienVault
   - Ransomware Live
-  - PhishStats 
-  - SHODAN  
-  - CENSYS  
+  - PhishStats
+  - SHODAN
+  - CENSYS
 
-- **Real-Time Dashboards**  
+- **Real-Time Dashboards**
   Interactive UI with geolocated asset visualization using Leaflet.js.
 
-- **Security News Feed**  
+- **Security News Feed**
   Real-time RSS feed consumption from:
-  - The Hacker News  
-  - CISO Advisor Brazil  
+  - The Hacker News
+  - CISO Advisor Brazil
 
 ### Threat Telemetry Dashboard
 Centralized interface displaying:
@@ -89,13 +89,13 @@ ZION bridges the gap between Web UI limitations and raw API intelligence. It fre
 
 ### Detection Strategies
 
-- **TLD Inheritance**  
+- **TLD Inheritance**
   Captures OTX pulses associated with root domains and related DNS or MX records.
 
-- **ASN Correlation**  
+- **ASN Correlation**
   Identifies infrastructure hosted in ASN ranges historically linked to botnets, phishing, or abuse campaigns.
 
-- **Low-Latency Intelligence**  
+- **Low-Latency Intelligence**
   Direct API consumption exposes threat data before it becomes indexed in graphical dashboards.
 
 ---
@@ -104,9 +104,9 @@ ZION bridges the gap between Web UI limitations and raw API intelligence. It fre
 
 ### 1. Prerequisites
 
-- **Operating System**: Ubuntu 24.04.2 LTS or compatible Linux distribution  
-- **Language**: Python 3.12 or newer  
-- **Installation Directory**: `/opt/ZION`
+- **Operating System**: Ubuntu 24.04.2 LTS or compatible Linux distribution
+- **Language**: Python 3.12 or newer
+- **Installation Directory**: `/opt/zion` <cloning the repo inside /opt will make the project home dir (zion/)>
 
 ---
 
@@ -114,10 +114,11 @@ ZION bridges the gap between Web UI limitations and raw API intelligence. It fre
 
 - **Clone the repository**
 
-`mkdir -p /opt/ZION ; cd /opt/ZION`
+`mkdir -p /opt/ ; cd /opt/`
 
 `git clone https://github.com/mym0us3r/zion.git`
 
+`cd /opt/zion`
 
 - **Create and activate virtual environment**
 
@@ -136,9 +137,9 @@ ZION bridges the gap between Web UI limitations and raw API intelligence. It fre
 
 - **Create a .env file in the project root directory.**
 
-``` 
+```
 
-touch /opt/ZION/.env
+touch /opt/zion/.env
 
 SHODAN_API=your_abuseipdb_key
 VT_API=your_virustotal_key
@@ -196,8 +197,8 @@ After=network.target
 [Service]
 User=root
 Group=root
-WorkingDirectory=/opt/ZION/app
-ExecStart=/opt/ZION/venv/bin/uvicorn main:app --host 0.0.0.0 --port 8000
+WorkingDirectory=/opt/zion/app
+ExecStart=/opt/zion/venv/bin/uvicorn main:app --host 0.0.0.0 --port 8000
 Restart=always
 RestartSec=5
 
@@ -224,8 +225,8 @@ sudo systemctl restart zion
 - **Monitor logs**:
 `journalctl -fu zion`
 
-- **Flush cache**: 
-`systemctl stop zion ; find /opt/ZION/ -name "__pycache__" -type d -exec rm -rf {} +`
+- **Flush cache**:
+`systemctl stop zion ; find /opt/zion/ -name "__pycache__" -type d -exec rm -rf {} +`
 
 ---
 
@@ -234,7 +235,7 @@ sudo systemctl restart zion
 Once the service is running, open your browser and go to:
 `http://localhost:8080` or `http://your-server-ip:8080`
 
---- 
+---
 
 *The project is still in its early stages, but it brings a powerful concept to the table. When you search for an address, it doesn't just look up the target, it performs a triple-check, across the Domain, sub-domain (as www - the most common entry point), and IP. While a more aggressive reconnaissance feature to scan entire infrastructures is on the roadmap, the primary focus right now is to empower SOC teams. ZION provides a broader perspective that is essential for handling alerts, threat hunting, or executing incident responses.*
 
@@ -242,7 +243,7 @@ Once the service is running, open your browser and go to:
 
 ## Disclaimer & Purpose
 
-**ZION** was developed to **streamline SOC operations**, drastically reducing manual reconnaissance time by consolidating fragmented intelligence into a single, actionable dashboard. 
+**ZION** was developed to **streamline SOC operations**, drastically reducing manual reconnaissance time by consolidating fragmented intelligence into a single, actionable dashboard.
 The core mission is to replace repetitive, manual lookups with **instant, high-fidelity telemetry**, allowing analysts to focus on what matters: threat response.
 
 > [!IMPORTANT]
